@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="XFTest.Views.CleaningList"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+    xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:prism="http://prismlibrary.com"
+    xmlns:views="clr-namespace:XFTest.Views"
+    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    Title="I DAG"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    BackgroundColor="#f2f2ef"
+    NavigationPage.HasNavigationBar="False"
+    mc:Ignorable="d">
+
+    <ContentPage.Content>
+
+        <StackLayout>
+            <Grid Padding="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="4*" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+
+                <Label
+                    x:Name="PageHeading"
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Margin="{OnPlatform iOS='75,60,0,0',
+                                        Android='75,30,20,0'}"
+                    FontFamily="{StaticResource BoldFont}"
+                    HorizontalTextAlignment="Center"
+                    Style="{StaticResource PageHeading}"
+                    Text="I DAG" />
+                <ffimageloadingsvg:SvgCachedImage
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Margin="{OnPlatform iOS='0,60,0,0',
+                                        Android='0,30,20,0'}"
+                    Source="Calender.svg"
+                    WidthRequest="20">
+                    <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ShowDialogCommand}" NumberOfTapsRequired="1" />
+                    </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                </ffimageloadingsvg:SvgCachedImage>
+
+            </Grid>
+            <RefreshView
+                Margin="20,20,20,20"
+                Command="{Binding LoadTasksCommand}"
+                IsRefreshing="{Binding IsBusy}">
+                <CollectionView Margin="20,20,20,20" ItemsSource="{Binding CleaningTasks}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Margin="0,0,0,15">
+                                <Frame
+                                    Padding="10,20,0,10"
+                                    BackgroundColor="#ffffff"
+                                    CornerRadius="15"
+                                    HasShadow="False"
+                                    HorizontalOptions="StartAndExpand"
+                                    IsClippedToBounds="True"
+                                    VerticalOptions="StartAndExpand">
+
+
+                                    <views:CleaningListDataTemplate />
+
+
+                                </Frame>
+                            </StackLayout>
+                            <!--<StackLayout Margin="10">
+                        <Frame CornerRadius="15" Padding="10,10,0,10" HasShadow="False" IsClippedToBounds="True" BackgroundColor="White">
+                                <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="50" />
+                                </Grid.ColumnDefinitions>
+
+                                <Label Grid.Row="1"
+                                       Text="{Binding Name}"
+                                       FontSize="18"
+                                       HorizontalTextAlignment="Start"
+                                       HorizontalOptions="Start"
+                                       VerticalOptions="Center"
+                                       FontFamily="{StaticResource BoldFont}" />
+                                <Button BackgroundColor="{Binding Color, Converter={StaticResource StringToColorConverter}}" Style="{StaticResource buttonStyleList}" Grid.Row="1"
+                                   Grid.Column="2"
+                                   Text="{Binding Location}"
+                                   HorizontalOptions="End"
+                                   FontFamily="{StaticResource SemiboldFont}"/>
+                                <Label Grid.Row="2" Grid.ColumnSpan="2"
+                                   Text="{Binding Details}"
+                                   FontSize="12"
+                                       HorizontalTextAlignment="Start"
+                                   FontFamily="{StaticResource RegularFont}" />
+                                <Label Grid.Row="3"
+                                   Text="{Binding dTime}"
+                                   FontSize="12"
+                                   HorizontalTextAlignment="Start"
+                                   HorizontalOptions="Start"
+                                   FontFamily="{StaticResource RegularFont}" />
+                                <Label Grid.Row="3" Grid.Column="2"
+                                   Text="{Binding dMinute}"
+                                   FontSize="12"
+                                   HorizontalTextAlignment="End"
+                                   Padding="0,0,10,0"
+                                   FontFamily="{StaticResource RegularFont}" />
+                                <Label Grid.Row="4"
+                                   Text="{Binding Address}"
+                                   FontSize="12"
+                                   HorizontalTextAlignment="Start"
+                                   FontFamily="{StaticResource RegularFont}" />
+                                <Label Grid.Row="4" Grid.Column="2"
+                                   Text="{Binding Distance}"
+                                   FontSize="12"
+                                   HorizontalTextAlignment="End"
+                                   Padding="0,0,10,0"
+                                   FontFamily="{StaticResource RegularFont}" />
+                            </Grid>
+
+                        </Frame>
+                        </StackLayout>-->
+
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </RefreshView>
+
+        </StackLayout>
+    </ContentPage.Content>
+
+</ContentPage>
