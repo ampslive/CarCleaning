@@ -1,5 +1,6 @@
 # Car Cleaning
-A sample app to practice using Xamarin Forms by creating an app to manage cleaning tasks for a Car Cleaning Company
+A sample app to practice using Xamarin Forms by creating an app to manage cleaning tasks for a Car Cleaning Company.
+This is native app on both Android & iOS
 
 ## Highlights
 - Xamarin Forms 4.5
